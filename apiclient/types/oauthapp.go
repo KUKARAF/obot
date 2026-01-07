@@ -14,6 +14,7 @@ const (
 	OAuthAppTypePagerDuty    OAuthAppType = "pagerduty"
 	OAuthAppTypeSmartThings  OAuthAppType = "smartthings"
 	OAuthAppTypeGitLab       OAuthAppType = "gitlab"
+	OAuthAppTypeAuthentik    OAuthAppType = "authentik"
 	OAuthAppTypeCustom       OAuthAppType = "custom"
 )
 

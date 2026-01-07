@@ -77,6 +77,42 @@ Follow the instructions [here](https://developers.google.com/identity/protocols/
 
 You can view the source code for Google provider in this [repo](https://github.com/obot-platform/tools).
 
+### Authentik
+
+Authentik is an open-source identity provider that can be used as an authentication provider for Obot.
+
+#### Setting up Authentik
+
+1. **Create an OAuth2 Provider in Authentik:**
+   - Navigate to your Authentik admin interface
+   - Go to "Providers" > "OAuth2" and click "Create"
+   - Set the following configuration:
+     - **Name**: Obot
+     - **Client Type**: Confidential
+     - **Authorization Flow**: Select an appropriate flow (e.g., "default-provider-authorization-implicit-consent")
+     - **Redirect URIs**: Add the callback URL from Obot's Auth Provider configuration
+     - **Signing Key**: Select a key for token signing
+
+2. **Create an Application in Authentik:**
+   - Go to "Applications" > "OAuth2" and click "Create"
+   - Set the following configuration:
+     - **Name**: Obot
+     - **Slug**: obot
+     - **Provider**: Select the provider you created above
+
+3. **Configure in Obot:**
+   - In Obot's admin interface, go to "Auth Providers" > "Authentik"
+   - Enter the following details:
+     - **Client ID**: From your Authentik OAuth2 provider
+     - **Client Secret**: From your Authentik OAuth2 provider
+     - **Issuer URL**: Typically `https://your-authentik-domain/application/o/obot/`
+     - **Email Domains**: Configure as needed for access control
+
+4. **User Attribute Mapping:**
+   - Authentik provides standard OAuth2 claims
+   - Obot will automatically map standard claims like `email`, `name`, `preferred_username`
+   - Custom claims can be configured in Authentik's provider settings
+
 ### Entra (Enterprise Only)
 
 Within the [Microsoft Entra admin center](https://entra.microsoft.com), go to App registrations and click New registration.
